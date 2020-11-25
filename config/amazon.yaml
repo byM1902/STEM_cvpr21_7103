@@ -1,0 +1,23 @@
+
+data_name: "officeCaltech10"
+src_name: "caltech_ResNet101,dslr_ResNet101,webcam_ResNet101"
+trg_name: "amazon_ResNet101"
+num_classes: 10
+cast_data: False
+sample_size: 2
+
+num_iters: 20000
+gen_trade_off: 0.1
+learning_rate: 0.0001
+batch_size: 60
+trg_trade_off: 0.01
+trg_ent_src_domain_trdoff: 0.0
+src_domain_trade_off: "1.0, 1.0, 1.0"
+
+
+
+
+
+
+
+
