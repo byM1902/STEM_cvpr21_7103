@@ -13,7 +13,7 @@ from sklearn import metrics
 from sklearn.datasets import load_svmlight_file
 from sklearn.model_selection import ParameterGrid
 
-from mda_ht_mimic_hs import MDAOT
+from mda_ht_mimic_hs import STEM
 
 import numpy as np
 import tensorflow as tf
@@ -55,11 +55,7 @@ def main_func(arg_param, src_name=None, trg_name=None):
 
     assert arg_param['batch_size'] % data_loader.num_src_domain == 0
 
-    # print('users_params:', users_params)
-
-    # arg_param = param_config.args
-
-    learner = MDAOT(
+    learner = STEM(
         **arg_param,
     )
 
@@ -69,38 +65,10 @@ def main_func(arg_param, src_name=None, trg_name=None):
 
     learner.x_trg_test = data_loader.trg_test[0][0]
     learner.y_trg_test = data_loader.trg_test[0][1]
-    # learner.x_src_test = x_src_test
-    # learner.y_src_test = y_src_test
-
-    # print("dim_src: (%d, %d, %d)" % (learner.dim_src[0], learner.dim_src[1], learner.dim_src[2]))
-    # print("dim_trg: (%d, %d, %d)" % (learner.dim_trg[0], learner.dim_trg[1], learner.dim_trg[2]))
 
     learner._init(data_loader)
     learner._build_model()
     learner._fit_loop()
-
-    # print('\n-------------------')
-    # print("Source:")
-    # y_src_train_pred, classification_loss = learner.predict(x_src_train, domain='src')
-    # print('y_src_train_pred.shape', y_src_train_pred.shape)
-    # print("Training loss: %.4f" % classification_loss)
-    # print("Training source acc = %.4f" % (metrics.accuracy_score(y_src_train, y_src_train_pred)*100))
-    #
-    # y_src_test_pred, classification_loss = learner.predict(x_src_test, domain='src')
-    # print("Testing loss: %.4f" % classification_loss)
-    # print("Testing source acc = %.4f" % (metrics.accuracy_score(y_src_test, y_src_test_pred)*100))
-    #
-    # print('\n-------------------')
-    # print("Target:")
-    # y_trg_train_pred, classification_loss = learner.predict(data_loader.trg_train[0][1], domain='trg')
-    # print("Training loss: %.4f" % classification_loss)
-    # print("Training target acc = %.4f" % (metrics.accuracy_score(data_loader.onehot2scalar(data_loader.trg_train[0][2]),
-    #                                                              y_trg_train_pred) * 100))
-    #
-    # y_trg_test_pred, classification_loss = learner.predict(data_loader.trg_test[0][1], domain='trg')
-    # print("Testing loss: %.4f" % classification_loss)
-    # print("Testing target acc = %.4f" % (metrics.accuracy_score(data_loader.onehot2scalar(data_loader.trg_test[0][2]),
-    #                                                             y_trg_test_pred) * 100))
 
 
 def save_data_for_visualization(create_obj_func, src_name=None, trg_name=None, show=False, block_figure_on_end=False):

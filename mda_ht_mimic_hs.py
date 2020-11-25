@@ -110,9 +110,9 @@ def get_default_config():
     return tf_config
 
 
-class MDAOT():
+class STEM():
     def __init__(self,
-                 model_name="MDAOT-results",
+                 model_name="STEM-results",
                  learning_rate=0.001,
                  batch_size=128,
                  num_iters=80000,
@@ -843,7 +843,6 @@ class MDAOT():
 
     def _fit_loop(self):
         print("")
-        print('Start training MDAOT model at', os.path.abspath(__file__))
         print('============ LOG-ID: %s ============' % self.current_time)
         mmd_lst = []
         iter_lst = []
@@ -861,7 +860,6 @@ class MDAOT():
                                      "{}_{}_{}".format(self.current_time, self.data_loader.trg_domain_name[0], self.process))
         self.tf_summary_writer = tf.summary.FileWriter(self.log_path, self.tf_session.graph)
 
-        # Load model for MDAOT to train more if possible
         self.checkpoint_path = os.path.join(model_dir(), self.model_name, "saved-model", "{}".format(self.mdaot_model_id))
         # print(self.checkpoint_path)
         check_point = tf.train.get_checkpoint_state(self.checkpoint_path)
@@ -1101,7 +1099,7 @@ class MDAOT():
         # Save model
         checkpoint_path = os.path.join(model_dir(), self.model_name, "saved-model",
                                        "{}_{}_{}".format(self.current_time, self.data_loader.trg_domain_name[0], self.process))
-        checkpoint_path = os.path.join(checkpoint_path, "mdaot_" + self.current_time + ".ckpt")
+        checkpoint_path = os.path.join(checkpoint_path, "stem_" + self.current_time + ".ckpt")
 
         directory = os.path.dirname(checkpoint_path)
         if not os.path.exists(directory):
