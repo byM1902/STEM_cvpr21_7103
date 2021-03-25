@@ -1,7 +1,7 @@
 # STEM: An approach to Multi-source Domain Adaptation with Guarantees
 
 <p align="center">
-  <img src="docs/overal_framework.png" /> 
+  <img src="docs/overal_framework_ver2.PNG" /> 
 </p>
 
 ## Introduction
@@ -37,13 +37,14 @@ The config parameter to train model in `config` folder, please check it before r
 python run_stem_ht_mimic_hs.py --config <dataset name>.yaml --trg_name <target name>
 ```
 
-For example:  
-Train with target domain is `Amazon`:
-```
-python run_stem_ht_mimic_hs.py --config OfficeCaltech10.yaml --trg_name amazon
-```
+**For example**:  
 
-Train with target domain is `Synthetic Digits`:
+Train **Digit-five** with target domain is `Synthetic Digits`:
 ```
 python run_stem_ht_mimic_hs.py --config DigitFive.yaml --trg_name syn
+```
+
+Train **Office-Caltech10** with target domain is `Amazon`:
+```
+python run_stem_ht_mimic_hs.py --config OfficeCaltech10.yaml --trg_name amazon
 ```
